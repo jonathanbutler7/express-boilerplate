@@ -21,7 +21,7 @@ scoresRouter.get('/:candidate_id', async (req, res) => {
     const promise = await RouteService.getEngineer(db, candidate_id);
     const foundCandidate = promise[0];
     if (foundCandidate === undefined) {
-      throw { message: `The candidate_id you requested is invalid` };
+      throw { message: 'The candidate_id you requested is invalid' };
     }
     const sameTitles = await RouteService.getScores(db, foundCandidate.title);
     const percentiles = getPercentiles(foundCandidate, sameTitles);

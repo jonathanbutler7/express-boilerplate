@@ -13,7 +13,7 @@ function getCommunicationScores(arr) {
 }
 
 function getPercentile(arr, score) {
-  return arr.indexOf(score) / arr.length * 100;
+  return (arr.indexOf(score) + 1) / arr.length * 100;
 }
 
 function getSimilarFractals(sameTitlesArr, fractal_index) {
@@ -39,4 +39,5 @@ module.exports = {
   getCommunicationScores,
   areSimilar,
   getCodingScores,
+  sort,
 };

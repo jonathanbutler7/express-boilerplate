@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/helpers.spec.js",
+    "coverage": "nyc mocha tests/helpers.spec.js tests/scores.spec.js",
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "predeploy": "npm audit",
@@ -20,6 +21,7 @@
     "helmet": "^3.23.3",
     "knex": "^0.21.17",
     "morgan": "^1.10.0",
+    "nyc": "^15.1.0",
     "pg": "^8.5.1"
   },
   "devDependencies": {

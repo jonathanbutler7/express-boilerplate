@@ -1,10 +1,6 @@
 const RouteService = {
   getAll(knex, table) {
-    console.log(table);
     return knex.select('*').from(table);
-  },
-  getById(knex, field, id, table) {
-    return knex.from(table).select('*').where(field, id).returning('*');
   },
   getEngineer(knex, id) {
     return (

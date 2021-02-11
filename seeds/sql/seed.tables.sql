@@ -13,6 +13,6 @@ CREATE TABLE companies (
     fractal_index decimal
 );
 
-\COPY score_records FROM 'backend/seeds/data/score-records.csv' WITH DELIMITER AS ',' CSV;
+\COPY score_records FROM './seeds/data/score-records.csv' WITH DELIMITER AS ',' CSV;
 
-\COPY companies FROM 'backend/seeds/data/companies.csv' WITH DELIMITER AS ',' CSV;
+\COPY companies FROM './seeds/data/companies.csv' WITH DELIMITER AS ',' CSV;

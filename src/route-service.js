@@ -3,25 +3,23 @@ const RouteService = {
     return knex.select('*').from(table);
   },
   getEngineer(knex, id) {
-    return (
-      knex
-        .from('score_records')
-        .select(
-          'candidate_id',
-          'companies.company_id',
-          'fractal_index',
-          'title',
-          'communication_score',
-          'coding_score'
-        )
-        .where('candidate_id', id)
-        .join(
-          'companies',
-          'score_records.company_id',
-          '=',
-          'companies.company_id'
-        )
-    );
+    return knex
+      .from('score_records')
+      .select(
+        'candidate_id',
+        'companies.company_id',
+        'fractal_index',
+        'title',
+        'communication_score',
+        'coding_score'
+      )
+      .where('candidate_id', id)
+      .join(
+        'companies',
+        'score_records.company_id',
+        '=',
+        'companies.company_id'
+      );
   },
   getScores(knex, title) {
     return (

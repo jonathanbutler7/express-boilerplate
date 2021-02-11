@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/helpers.spec.js",
-    "coverage": "nyc mocha tests/helpers.spec.js tests/scores.spec.js",
+    "test": "mocha tests/helpers.spec.js tests/scores.spec.js tests/app.spec.js",
+    "coverage": "nyc mocha tests/helpers.spec.js tests/scores.spec.js tests/app.spec.js",
     "dev": "nodemon src/server.js",
+    "seed-db": "psql -U postgres -f ./seeds/sql/seed.create_db.sql",
+    "seed-tables": "psql -U postgres -d benchmark -f ./seeds/sql/seed.tables.sql",
+    "env": "touch .env",
+    "pg": "echo 'DATABASE_URL=postgresql://postgres@localhost/benchmark' >> .env",
     "start": "node src/server.js",
     "predeploy": "npm audit",
     "deploy": "git push heroku master"

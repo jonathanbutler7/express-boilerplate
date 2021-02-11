@@ -3,8 +3,8 @@ const knex = require('knex');
 const { DATABASE_URL } = require('../src/config');
 const supertest = require('supertest');
 
+const test = supertest(app);
 context('Scores endpoint', () => {
-  const test = supertest(app);
   let db = knex({ client: 'pg', connection: DATABASE_URL });
 
   before('make knex instance', () => {
@@ -20,9 +20,9 @@ context('Scores endpoint', () => {
   context('Given the /:candidate_id param is valid', () => {
     it('GET responds with 200 and the correct candidate', () => {
       const correctCandidate = {
+        codingPercentile: 67.74193548387096,
+        communicationPercentile: 48.38709677419355,
         asComparedTo: 31,
-        codingPercentile: 64.51612903225806,
-        communicationPercentile: 45.16129032258064,
       };
       return test.get('/scores/889').expect(200, correctCandidate);
     });
@@ -37,4 +37,10 @@ context('Scores endpoint', () => {
   });
 
   after('disconnect from db', () => db.destroy());
+});
+
+context('Scores endpoint is not running', () => {
+  it('GET responds with 404 and an error', () => {
+    return test.get('/scores').expect(404);
+  });
 });

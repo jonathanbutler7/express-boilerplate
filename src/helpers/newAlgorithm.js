@@ -128,10 +128,9 @@ const similarEngineers = meetsFractal.length;
 function howManyScoresAreLower(meetsFractal, score) {
   let lowerScores = 0;
   meetsFractal.forEach((candidate) => {
-    +candidate.coding_score <= score && lower++;
+    +candidate.coding_score <= score && lowerScores++;
   });
   return lowerScores;
 }
 
-similarEngineers;
 howManyScoresAreLower(meetsFractal, +candidate.coding_score) / similarEngineers;

@@ -1,43 +1,45 @@
 function areSimilar(index1, index2) {
   return Math.abs(index1 - index2) < 0.15;
 }
-function sort(a, b) {
-  return a - b;
-}
-function getCodingScores(arr) {
-  return arr.map((engineer) => engineer.coding_score).sort(sort);
-}
 
-function getCommunicationScores(arr) {
-  return arr.map((engineer) => engineer.communication_score).sort(sort);
-}
+// function getPercentile(arr, score) {
+//   return ((arr.indexOf(score) + 1) / arr.length) * 100;
+// }
 
-function getPercentile(arr, score) {
-  return (arr.indexOf(score) + 1) / arr.length * 100;
-}
-
-function getSimilarFractals(sameTitlesArr, fractal_index) {
-  return sameTitlesArr.filter((engineer) =>
+function getSimilarFractals(similarEngineers, fractal_index) {
+  return similarEngineers.filter((engineer) =>
     areSimilar(+fractal_index, +engineer.fractal_index)
   );
 }
 
-function getPercentiles(foundCandidate, sameTitles) {
-  const meetsFractal = getSimilarFractals(sameTitles, foundCandidate.fractal_index);
-  const codingScores = getCodingScores(meetsFractal);
-  const communicationScores = getCommunicationScores(meetsFractal);
-  const codingPercentile = getPercentile(codingScores, foundCandidate.coding_score);
-  const communicationPercentile = getPercentile(communicationScores, foundCandidate.communication_score);
+function howManyCodingScoresAreLower(meetsFractal, score) {
+  let lowerScores = 0;
+  meetsFractal.forEach((candidate) => {
+    +candidate.coding_score <= score && lowerScores++;
+  });
+  return lowerScores;
+}
+function howManyCommScoresAreLower(meetsFractal, score) {
+  let lowerScores = 0;
+  meetsFractal.forEach((candidate) => {
+    +candidate.communication_score <= score && lowerScores++;
+  });
+  return lowerScores;
+}
+
+function getPercentiles(foundCandidate, similarEngineers) {
+  const meetsFractal = getSimilarFractals(similarEngineers, foundCandidate.fractal_index);
+  const lowerCodingScores = howManyCodingScoresAreLower(meetsFractal, +foundCandidate.coding_score);
+  const lowerCommScores = howManyCommScoresAreLower(meetsFractal, +foundCandidate.communication_score);
+  const codingPercentile = lowerCodingScores / meetsFractal.length * 100;
+  const communicationPercentile = lowerCommScores / meetsFractal.length * 100;
   const asComparedTo = meetsFractal.length;
   return { codingPercentile, communicationPercentile, asComparedTo };
 }
 
 module.exports = {
   getSimilarFractals,
-  getPercentile,
+  // getPercentile,
   getPercentiles,
-  getCommunicationScores,
   areSimilar,
-  getCodingScores,
-  sort,
 };

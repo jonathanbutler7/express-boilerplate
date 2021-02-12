@@ -1,4 +1,4 @@
-const sameTitles = [
+const similarEngineers = [
   {
     title: 'Senior Engineer',
     communication_score: '138826',
@@ -113,31 +113,4 @@ const sameTitles = [
   },
 ];
 
-const smallSample = [
-  {
-    title: 'Engineer',
-    communication_score: '114028',
-    coding_score: '180944',
-    company_id: '2',
-    fractal_index: '0.782',
-    candidate_id: '889',
-  },
-  {
-    title: 'Engineer',
-    communication_score: '62734',
-    coding_score: '64000',
-    company_id: '2',
-    fractal_index: '0.782',
-    candidate_id: '890',
-  },
-  {
-    title: 'Engineer',
-    communication_score: '167656',
-    coding_score: '231216',
-    company_id: '2',
-    fractal_index: '0.782',
-    candidate_id: '891',
-  },
-];
-
-module.exports = { sameTitles, smallSample };
+module.exports = { similarEngineers };

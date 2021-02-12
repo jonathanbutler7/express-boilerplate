@@ -125,12 +125,12 @@ const candidate = {
 };
 const similarEngineers = meetsFractal.length;
 
-function howManyScoresAreLower(list, score) {
-  let lower = 0;
-  list.forEach((candidate) => {
+function howManyScoresAreLower(meetsFractal, score) {
+  let lowerScores = 0;
+  meetsFractal.forEach((candidate) => {
     +candidate.coding_score <= score && lower++;
   });
-  return lower;
+  return lowerScores;
 }
 
 similarEngineers;

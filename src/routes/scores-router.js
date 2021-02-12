@@ -23,8 +23,8 @@ scoresRouter.get('/:candidate_id', async (req, res) => {
     if (foundCandidate === undefined) {
       throw { message: 'The candidate_id you requested is invalid' };
     }
-    const sameTitles = await RouteService.getScores(db, foundCandidate.title);
-    const percentiles = getPercentiles(foundCandidate, sameTitles);
+    const similarEngineers = await RouteService.getScores(db, foundCandidate.title);
+    const percentiles = getPercentiles(foundCandidate, similarEngineers);
     res.status(200).send(percentiles);
   } catch (error) {
     res.status(404).send(error);

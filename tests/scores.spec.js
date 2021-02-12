@@ -26,6 +26,46 @@ context('Scores endpoint', () => {
       };
       return test.get('/scores/889').expect(200, correctCandidate);
     });
+    it('GET responds with 200 and the correct candidate', () => {
+      const correctCandidate = {
+        codingPercentile: 3.225806451612903,
+        communicationPercentile: 12.903225806451612,
+        asComparedTo: 31,
+      };
+      return test.get('/scores/890').expect(200, correctCandidate);
+    });
+    it('GET responds with 200 and the correct candidate', () => {
+      const correctCandidate = {
+        codingPercentile: 93.54838709677419,
+        communicationPercentile: 80.64516129032258,
+        asComparedTo: 31,
+      };
+      return test.get('/scores/891').expect(200, correctCandidate);
+    });
+    it('GET responds with 200 and the correct candidate', () => {
+      const correctCandidate = {
+        codingPercentile: 85.71428571428571,
+        communicationPercentile: 92.85714285714286,
+        asComparedTo: 14,
+      };
+      return test.get('/scores/915').expect(200, correctCandidate);
+    });
+    it('GET responds with 200 and the correct candidate', () => {
+      const correctCandidate = {
+        codingPercentile: 100,
+        communicationPercentile: 100,
+        asComparedTo: 14,
+      };
+      return test.get('/scores/897').expect(200, correctCandidate);
+    });
+    it('GET responds with 200 and the correct candidate', () => {
+      const correctCandidate = {
+        codingPercentile: 7.142857142857142,
+        communicationPercentile: 7.142857142857142,
+        asComparedTo: 14,
+      };
+      return test.get('/scores/900').expect(200, correctCandidate);
+    });
   });
 
   context('Given the /:candidate_id param is invalid', () => {
